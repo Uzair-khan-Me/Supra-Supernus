@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Supra Supernus - Professional online toolkit with advanced features. Text analysis, unit converters with formulas, password generator, QR code creator, notes, todo list, stopwatch and timer.">
+    <meta name="keywords" content="text counter, unit converter, length converter, area converter, volume converter, speed converter, password generator, QR code generator, notes app, todo list, stopwatch, timer, free online tools">
+    <meta name="author" content="Supra Supernus">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Supra Supernus - Advanced Productivity Tools">
+    <meta property="og:description" content="Professional toolkit with 15+ advanced features for maximum productivity.">
+    <meta property="og:type" content="website">
+    <title>Supra Supernus - Advanced Online Tools | Converters, Generators & More</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #2c3e50;
+            background: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .nav {
+            display: flex;
+            gap: 0.3rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .nav::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-btn.active {
+            background: #3498db;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.8rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e1e8ed;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+        }
+
+        .icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            margin-bottom: 1.3rem;
+            font-size: 0.95rem;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 0.8rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card button:hover {
+            background: #2980b9;
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .section {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 1.9rem);
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem;
+            font-size: 1.3rem;
+        }
+
+        .group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #dfe6e9;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        .btn-sec {
+            background: #95a5a6;
+        }
+
+        .btn-sec:hover {
+            background: #7f8c8d;
+        }
+
+        .btn-ok {
+            background: #27ae60;
+        }
+
+        .btn-ok:hover {
+            background: #229954;
+        }
+
+        .btn-del {
+            background: #e74c3c;
+        }
+
+        .btn-del:hover {
+            background: #c0392b;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1.3rem;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+
+        .stat-val {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+            opacity: 0.9;
+        }
+
+        .conv-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .swap {
+            padding: 0.9rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .swap:hover {
+            transform: rotate(180deg);
+        }
+
+        .formula {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            color: #2c3e50;
+        }
+
+        .pass-opts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .check-box {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.7rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .check-box input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .qr-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-btn {
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 2px solid #dfe6e9;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .qr-btn:hover {
+            border-color: #3498db;
+            background: #e8f4f8;
+        }
+
+        .qr-btn.active {
+            border-color: #3498db;
+            background: #3498db;
+            color: white;
+        }
+
+        #qr-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .item {
+            background: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            position: relative;
+            border-left: 4px solid #3498db;
+        }
+
+        .item h4 {
+            color: #2c3e50;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+        }
+
+        .item p {
+            color: #7f8c8d;
+        }
+
+        .item .btn-del {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.4rem 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        .timer-big {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            color: #3498db;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-btns {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .todo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .todo input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .todo.done span {
+            text-decoration: line-through;
+            color: #95a5a6;
+        }
+
+        .priority-btns {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .priority-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #dfe6e9;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .priority-btn.active {
+            border-color: #3498db;
+            background: #3498db;
+            color: white;
+        }
+
+        .note-search {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: #3498db;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer h3 {
+            margin-bottom: 0.8rem;
+            color: white;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-top: 0.5rem;
+        }
+
+        .tab-selector {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-selector button {
+            padding: 0.6rem 1.2rem;
+            background: #f8f9fa;
+            border: 2px solid #dfe6e9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-selector button.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2.5rem 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 1.5rem 1rem;
+            }
+
+            .wrap {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .conv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .swap {
+                transform: rotate(90deg);
+                margin: 0.8rem auto;
+            }
+
+            .pass-opts,
+            .qr-options {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timer-big {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-wrap {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+            <div class="logo">Supra Supernus</div>
+            <nav class="nav">
+                <button class="nav-btn active" onclick="showPage('home')">Home</button>
+                <button class="nav-btn" onclick="showPage('text')">Text Tools</button>
+                <button class="nav-btn" onclick="showPage('convert')">Converters</button>
+                <button class="nav-btn" onclick="showPage('pass')">Password</button>
+                <button class="nav-btn" onclick="showPage('qr')">QR Code</button>
+                <button class="nav-btn" onclick="showPage('todo')">Todo</button>
+                <button class="nav-btn" onclick="showPage('notes')">Notes</button>
+                <button class="nav-btn" onclick="showPage('stop')">Stopwatch</button>
+                <button class="nav-btn" onclick="showPage('time')">Timer</button>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="section active">
+        <div class="hero">
+            <h1>Supra Supernus</h1>
+            <p>Advanced productivity toolkit with powerful features. Simple to use, packed with functionality.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="icon">📝</div>
+                <h3>Advanced Text Tools</h3>
+                <p>Word counter, character analysis, case conversion, duplicate removal, text statistics and more.</p>
+                <button onclick="showPage('text')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔄</div>
+                <h3>Multi-Unit Converters</h3>
+                <p>Temperature, weight, length, area, volume, speed converters with formulas displayed.</p>
+                <button onclick="showPage('convert')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔐</div>
+                <h3>Advanced Password Generator</h3>
+                <p>Generate ultra-secure passwords with custom rules, strength meter, and bulk generation.</p>
+                <button onclick="showPage('pass')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📱</div>
+                <h3>Multi-Format QR Generator</h3>
+                <p>Create QR codes for text, URLs, images, WiFi credentials, vCards, and more formats.</p>
+                <button onclick="showPage('qr')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">✅</div>
+                <h3>Smart Todo List</h3>
+                <p>Task manager with priorities, categories, due dates, and progress tracking.</p>
+                <button onclick="showPage('todo')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📒</div>
+                <h3>Advanced Notes App</h3>
+                <p>Rich note-taking with categories, search, tags, and export functionality.</p>
+                <button onclick="showPage('notes')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">⏱️</div>
+                <h3>Pro Stopwatch</h3>
+                <p>Precision timing with lap records, split times, and exportable results.</p>
+                <button onclick="showPage('stop')">Open Tool</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">⏲️</div>
+                <h3>Multi-Timer</h3>
+                <p>Multiple countdown timers, presets, alerts, and interval training modes.</p>
+                <button onclick="showPage('time')">Open Tool</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="wrap">
+        <section id="text" class="section">
+            <h2>Advanced Text Tools</h2>
+            <div class="group">
+                <label>Enter Text:</label>
+                <textarea id="txt" placeholder="Type or paste your text here for comprehensive analysis..." oninput="countText()"></textarea>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-val" id="words">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="chars">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="no-space">0</div>
+                    <div class="stat-label">No Spaces</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="lines">0</div>
+                    <div class="stat-label">Lines</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="sentences">0</div>
+                    <div class="stat-label">Sentences</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="paragraphs">0</div>
+                    <div class="stat-label">Paragraphs</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="read-time">0</div>
+                    <div class="stat-label">Read Time (min)</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="speak-time">0</div>
+                    <div class="stat-label">Speak Time (min)</div>
+                </div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h3>Text Transformations</h3>
+                <button class="btn" onclick="changeCase('upper')">UPPERCASE</button>
+                <button class="btn" onclick="changeCase('lower')">lowercase</button>
+                <button class="btn" onclick="changeCase('title')">Title Case</button>
+                <button class="btn" onclick="changeCase('sentence')">Sentence case</button>
+                <button class="btn" onclick="changeCase('camel')">camelCase</button>
+                <button class="btn" onclick="changeCase('snake')">snake_case</button>
+                <button class="btn btn-sec" onclick="removeDup()">Remove Duplicate Lines</button>
+                <button class="btn btn-sec" onclick="reverseText()">Reverse Text</button>
+                <button class="btn btn-sec" onclick="sortLines()">Sort Lines A-Z</button>
+                <button class="btn btn-sec" onclick="removeSpaces()">Remove Extra Spaces</button>
+                <button class="btn btn-sec" onclick="clearTxt()">Clear All</button>
+            </div>
+        </section>
+
+        <section id="convert" class="section">
+            <h2>Multi-Unit Converters</h2>
+            
+            <div class="tab-selector">
+                <button class="active" onclick="showConvTab('temp')">Temperature</button>
+                <button onclick="showConvTab('weight')">Weight</button>
+                <button onclick="showConvTab('length')">Length</button>
+                <button onclick="showConvTab('area')">Area</button>
+                <button onclick="showConvTab('volume')">Volume</button>
+                <button onclick="showConvTab('speed')">Speed</button>
+                <button onclick="showConvTab('percent')">Percentage</button>
+            </div>
+
+            <div id="temp-conv" class="conv-tab">
+                <h3>Temperature Converter</h3>
+                <div class="conv-grid">
+                    <div class="group">
+                        <label>Celsius (°C)</label>
+                        <input type="number" id="cel" placeholder="0" oninput="convTemp('c')">
+                    </div>
+                    <button class="swap">⇄</button>
+                    <div class="group">
+                        <label>Fahrenheit (°F)</label>
+                        <input type="number" id="fah" placeholder="32" oninput="convTemp('f')">
+                    </div>
+                </div>
+                <div class="group" style="margin-top: 1rem;">
+                    <label>Kelvin (K)</label>
+                    <input type="number" id="kel" placeholder="273.15" oninput="convTemp('k')">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    °F = (°C × 9/5) + 32<br>
+                    °C = (°F - 32) × 5/9<br>
+                    K = °C + 273.15
+                </div>
+            </div>
+
+            <div id="weight-conv" class="conv-tab" style="display:none;">
+                <h3>Weight Converter</h3>
+                <div class="group">
+                    <label>Kilograms (kg)</label>
+                    <input type="number" id="kg" placeholder="0" oninput="convWeight()">
+                </div>
+                <div class="group">
+                    <label>Pounds (lbs)</label>
+                    <input type="number" id="lbs" placeholder="0" oninput="convWeight()">
+                </div>
+                <div class="group">
+                    <label>Grams (g)</label>
+                    <input type="number" id="gram" placeholder="0" oninput="convWeight()">
+                </div>
+                <div class="group">
+                    <label>Ounces (oz)</label>
+                    <input type="number" id="oz" placeholder="0" oninput="convWeight()">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    1 kg = 2.20462 lbs = 1000 g = 35.274 oz<br>
+                    1 lb = 0.453592 kg = 453.592 g = 16 oz
+                </div>
+            </div>
+
+            <div id="length-conv" class="conv-tab" style="display:none;">
+                <h3>Length Converter</h3>
+                <div class="group">
+                    <label>Meters (m)</label>
+                    <input type="number" id="meter" placeholder="0" oninput="convLength()">
+                </div>
+                <div class="group">
+                    <label>Kilometers (km)</label>
+                    <input type="number" id="km" placeholder="0" oninput="convLength()">
+                </div>
+                <div class="group">
+                    <label>Feet (ft)</label>
+                    <input type="number" id="feet" placeholder="0" oninput="convLength()">
+                </div>
+                <div class="group">
+                    <label>Miles (mi)</label>
+                    <input type="number" id="miles" placeholder="0" oninput="convLength()">
+                </div>
+                <div class="group">
+                    <label>Inches (in)</label>
+                    <input type="number" id="inches" placeholder="0" oninput="convLength()">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    1 m = 3.28084 ft = 39.3701 in<br>
+                    1 km = 1000 m = 0.621371 mi<br>
+                    1 mi = 1.60934 km = 5280 ft
+                </div>
+            </div>
+
+            <div id="area-conv" class="conv-tab" style="display:none;">
+                <h3>Area Converter</h3>
+                <div class="group">
+                    <label>Square Meters (m²)</label>
+                    <input type="number" id="sqm" placeholder="0" oninput="convArea()">
+                </div>
+                <div class="group">
+                    <label>Square Feet (ft²)</label>
+                    <input type="number" id="sqft" placeholder="0" oninput="convArea()">
+                </div>
+                <div class="group">
+                    <label>Acres</label>
+                    <input type="number" id="acre" placeholder="0" oninput="convArea()">
+                </div>
+                <div class="group">
+                    <label>Hectares (ha)</label>
+                    <input type="number" id="hectare" placeholder="0" oninput="convArea()">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    1 m² = 10.7639 ft²<br>
+                    1 acre = 43560 ft² = 4046.86 m²<br>
+                    1 hectare = 10000 m² = 2.47105 acres
+                </div>
+            </div>
+
+            <div id="volume-conv" class="conv-tab" style="display:none;">
+                <h3>Volume Converter</h3>
+                <div class="group">
+                    <label>Liters (L)</label>
+                    <input type="number" id="liter" placeholder="0" oninput="convVolume()">
+                </div>
+                <div class="group">
+                    <label>Milliliters (mL)</label>
+                    <input type="number" id="ml" placeholder="0" oninput="convVolume()">
+                </div>
+                <div class="group">
+                    <label>Gallons (gal)</label>
+                    <input type="number" id="gallon" placeholder="0" oninput="convVolume()">
+                </div>
+                <div class="group">
+                    <label>Cubic Meters (m³)</label>
+                    <input type="number" id="cubicm" placeholder="0" oninput="convVolume()">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    1 L = 1000 mL = 0.264172 gal<br>
+                    1 gal = 3.78541 L<br>
+                    1 m³ = 1000 L = 264.172 gal
+                </div>
+            </div>
+
+            <div id="speed-conv" class="conv-tab" style="display:none;">
+                <h3>Speed Converter</h3>
+                <div class="group">
+                    <label>Kilometers per Hour (km/h)</label>
+                    <input type="number" id="kmh" placeholder="0" oninput="convSpeed()">
+                </div>
+                <div class="group">
+                    <label>Miles per Hour (mph)</label>
+                    <input type="number" id="mph" placeholder="0" oninput="convSpeed()">
+                </div>
+                <div class="group">
+                    <label>Meters per Second (m/s)</label>
+                    <input type="number" id="ms" placeholder="0" oninput="convSpeed()">
+                </div>
+                <div class="group">
+                    <label>Knots</label>
+                    <input type="number" id="knots" placeholder="0" oninput="convSpeed()">
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    1 km/h = 0.621371 mph = 0.277778 m/s = 0.539957 knots<br>
+                    1 mph = 1.60934 km/h = 0.44704 m/s<br>
+                    1 m/s = 3.6 km/h = 2.23694 mph
+                </div>
+            </div>
+
+            <div id="percent-conv" class="conv-tab" style="display:none;">
+                <h3>Percentage Calculator</h3>
+                <div class="group">
+                    <label>What is <input type="number" id="per" placeholder="10" style="width: 80px; display: inline-block;"> % of <input type="number" id="of" placeholder="100" style="width: 100px; display: inline-block;"> ?</label>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="calcPer()">Calculate</button>
+                        <span id="per-res" style="margin-left: 1rem; font-size: 1.3rem; font-weight: 700; color: #3498db;"></span>
+                    </div>
+                </div>
+                <div class="group" style="margin-top: 2rem;">
+                    <label><input type="number" id="num1" placeholder="50" style="width: 100px; display: inline-block;"> is what % of <input type="number" id="num2" placeholder="200" style="width: 100px; display: inline-block;"> ?</label>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="calcPerOf()">Calculate</button>
+                        <span id="per-of-res" style="margin-left: 1rem; font-size: 1.3rem; font-weight: 700; color: #3498db;"></span>
+                    </div>
+                </div>
+                <div class="group" style="margin-top: 2rem;">
+                    <label>Percentage Change from <input type="number" id="old-val" placeholder="100" style="width: 100px; display: inline-block;"> to <input type="number" id="new-val" placeholder="150" style="width: 100px; display: inline-block;"></label>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="calcPerChange()">Calculate</button>
+                        <span id="per-change-res" style="margin-left: 1rem; font-size: 1.3rem; font-weight: 700; color: #3498db;"></span>
+                    </div>
+                </div>
+                <div class="formula">
+                    <strong>Formulas:</strong><br>
+                    Percentage = (Part / Whole) × 100<br>
+                    Percentage Change = ((New - Old) / Old) × 100<br>
+                    Percentage of Value = (Percentage / 100) × Value
+                </div>
+            </div>
+        </section>
+
+        <section id="pass" class="section">
+            <h2>Advanced Password Generator</h2>
+            <div class="group">
+                <label>Password Length: <span id="len-val" style="color: #3498db; font-weight: 700;">16</span></label>
+                <input type="range" id="len" min="8" max="128" value="16" oninput="updateLen(this.value)" style="width: 100%;">
+            </div>
+            <div class="pass-opts">
+                <div class="check-box">
+                    <input type="checkbox" id="up" checked>
+                    <label for="up" style="margin: 0;">Uppercase (A-Z)</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="low" checked>
+                    <label for="low" style="margin: 0;">Lowercase (a-z)</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="num" checked>
+                    <label for="num" style="margin: 0;">Numbers (0-9)</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="sym" checked>
+                    <label for="sym" style="margin: 0;">Symbols (!@#$%^&*)</label>
+                </div>
+                <div class="check-box">
+                    <input type="checkbox" id="no-ambiguous">
+                    <label for="no-ambiguous" style="margin: 0;">Exclude Ambiguous (0,O,l,1)</label>
+                </div>
+            </div>
+            <div class="group">
+                <label>Generated Password:</label>
+                <input type="text" id="gen-pass" readonly placeholder="Click generate button" style="font-family: 'Courier New', monospace; font-size: 1.1rem;">
+            </div>
+            <div class="group">
+                <label>Password Strength: <span id="strength" style="font-weight: 700;"></span></label>
+                <div style="height: 10px; background: #ecf0f1; border-radius: 5px; overflow: hidden;">
+                    <div id="strength-bar" style="height: 100%; width: 0%; transition: all 0.3s;"></div>
+                </div>
+            </div>
+            <button class="btn" onclick="genPass()">Generate Password</button>
+            <button class="btn btn-ok" onclick="copyPass()">Copy to Clipboard</button>
+            <button class="btn btn-sec" onclick="genMultiPass()">Generate 10 Passwords</button>
+            <div id="multi-pass" style="margin-top: 1.5rem; font-family: 'Courier New', monospace; white-space: pre-wrap;"></div>
+        </section>
+
+        <section id="qr" class="section">
+            <h2>Multi-Format QR Code Generator</h2>
+            
+            <div class="qr-options">
+                <div class="qr-btn active" onclick="setQRType('text')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📝</div>
+                    <div>Text/URL</div>
+                </div>
+                <div class="qr-btn" onclick="setQRType('wifi')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📶</div>
+                    <div>WiFi</div>
+                </div>
+                <div class="qr-btn" onclick="setQRType('email')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📧</div>
+                    <div>Email</div>
+                </div>
+                <div class="qr-btn" onclick="setQRType('phone')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📞</div>
+                    <div>Phone</div>
+                </div>
+                <div class="qr-btn" onclick="setQRType('sms')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">💬</div>
+                    <div>SMS</div>
+                </div>
+                <div class="qr-btn" onclick="setQRType('vcard')">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">👤</div>
+                    <div>vCard</div>
+                </div>
+            </div>
+
+            <div id="qr-text-form">
+                <div class="group">
+                    <label>Text or URL:</label>
+                    <input type="text" id="qr-txt" placeholder="Enter URL or text">
+                </div>
+            </div>
+
+            <div id="qr-wifi-form" style="display: none;">
+                <div class="group">
+                    <label>Network Name (SSID):</label>
+                    <input type="text" id="wifi-ssid" placeholder="MyWiFi">
+                </div>
+                <div class="group">
+                    <label>Password:</label>
+                    <input type="text" id="wifi-pass" placeholder="WiFi password">
+                </div>
+                <div class="group">
+                    <label>Security Type:</label>
+                    <select id="wifi-type">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="">None</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="qr-email-form" style="display: none;">
+                <div class="group">
+                    <label>Email Address:</label>
+                    <input type="text" id="email-addr" placeholder="example@email.com">
+                </div>
+                <div class="group">
+                    <label>Subject:</label>
+                    <input type="text" id="email-subj" placeholder="Email subject">
+                </div>
+                <div class="group">
+                    <label>Message:</label>
+                    <textarea id="email-msg" placeholder="Email message"></textarea>
+                </div>
+            </div>
+
+            <div id="qr-phone-form" style="display: none;">
+                <div class="group">
+                    <label>Phone Number:</label>
+                    <input type="text" id="phone-num" placeholder="+1234567890">
+                </div>
+            </div>
+
+            <div id="qr-sms-form" style="display: none;">
+                <div class="group">
+                    <label>Phone Number:</label>
+                    <input type="text" id="sms-num" placeholder="+1234567890">
+                </div>
+                <div class="group">
+                    <label>Message:</label>
+                    <textarea id="sms-msg" placeholder="SMS message"></textarea>
+                </div>
+            </div>
+
+            <div id="qr-vcard-form" style="display: none;">
+                <div class="group">
+                    <label>Full Name:</label>
+                    <input type="text" id="vcard-name" placeholder="John Doe">
+                </div>
+                <div class="group">
+                    <label>Organization:</label>
+                    <input type="text" id="vcard-org" placeholder="Company Name">
+                </div>
+                <div class="group">
+                    <label>Phone:</label>
+                    <input type="text" id="vcard-phone" placeholder="+1234567890">
+                </div>
+                <div class="group">
+                    <label>Email:</label>
+                    <input type="text" id="vcard-email" placeholder="john@example.com">
+                </div>
+                <div class="group">
+                    <label>Website:</label>
+                    <input type="text" id="vcard-web" placeholder="https://example.com">
+                </div>
+            </div>
+
+            <div class="group">
+                <label>QR Code Size:</label>
+                <select id="qr-size">
+                    <option value="200">Small (200x200)</option>
+                    <option value="300" selected>Medium (300x300)</option>
+                    <option value="400">Large (400x400)</option>
+                    <option value="500">Extra Large (500x500)</option>
+                </select>
+            </div>
+
+            <button class="btn" onclick="makeQR()">Generate QR Code</button>
+            <button class="btn btn-ok" onclick="downloadQR()">Download QR Code</button>
+            <div id="qr-box"></div>
+        </section>
+
+        <section id="todo" class="section">
+            <h2>Smart Todo List</h2>
+            <div class="group">
+                <label>New Task:</label>
+                <input type="text" id="task-in" placeholder="Enter task..." onkeypress="if(event.key==='Enter') addTask()">
+            </div>
+            <div class="group">
+                <label>Priority:</label>
+                <div class="priority-btns">
+                    <button class="priority-btn" onclick="setPriority('low')">Low</button>
+                    <button class="priority-btn active" onclick="setPriority('medium')">Medium</button>
+                    <button class="priority-btn" onclick="setPriority('high')">High</button>
+                </div>
+            </div>
+            <div class="group">
+                <label>Category:</label>
+                <select id="task-cat">
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="health">Health</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="group">
+                <label>Due Date:</label>
+                <input type="date" id="task-date">
+            </div>
+            <button class="btn" onclick="addTask()">Add Task</button>
+            <button class="btn btn-sec" onclick="sortTasks('priority')">Sort by Priority</button>
+            <button class="btn btn-sec" onclick="sortTasks('date')">Sort by Date</button>
+            <button class="btn btn-del" onclick="clearDone()">Clear Completed</button>
+            
+            <div style="margin-top: 1.5rem;">
+                <label>Filter by Category:</label>
+                <select id="filter-cat" onchange="filterTasks()">
+                    <option value="all">All Categories</option>
+                    <option value="personal">Personal</option>
+                    <option value="work">Work</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="health">Health</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div id="tasks" style="margin-top: 1.5rem;"></div>
+            <div id="task-stats" style="margin-top: 1.5rem;"></div>
+        </section>
+
+        <section id="notes" class="section">
+            <h2>Advanced Notes App</h2>
+            
+            <div class="note-search group">
+                <label>Search Notes:</label>
+                <input type="text" id="search-notes" placeholder="Search by title or content..." oninput="searchNotes()">
+            </div>
+
+            <div class="group">
+                <label>Title:</label>
+                <input type="text" id="note-title" placeholder="Note title">
+            </div>
+            <div class="group">
+                <label>Category:</label>
+                <select id="note-cat">
+                    <option value="general">General</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="ideas">Ideas</option>
+                    <option value="projects">Projects</option>
+                </select>
+            </div>
+            <div class="group">
+                <label>Tags (comma separated):</label>
+                <input type="text" id="note-tags" placeholder="important, project, urgent">
+            </div>
+            <div class="group">
+                <label>Content:</label>
+                <textarea id="note-txt" placeholder="Write your note..." style="min-height: 200px;"></textarea>
+            </div>
+            <button class="btn" onclick="addNote()">Save Note</button>
+            <button class="btn btn-sec" onclick="exportNotes()">Export All Notes</button>
+            
+            <div style="margin-top: 1.5rem;">
+                <label>Filter by Category:</label>
+                <select id="filter-notes-cat" onchange="filterNotes()">
+                    <option value="all">All Categories</option>
+                    <option value="general">General</option>
+                    <option value="work">Work</option>
+                    <option value="personal">Personal</option>
+                    <option value="ideas">Ideas</option>
+                    <option value="projects">Projects</option>
+                </select>
+            </div>
+
+            <div id="all-notes" style="margin-top: 2rem;"></div>
+        </section>
+
+        <section id="stop" class="section">
+            <h2>Professional Stopwatch</h2>
+            
+            <div class="group">
+                <label>
+                    <input type="checkbox" id="keystroke-sound" checked onchange="toggleKeystroke()" style="width: auto; margin-right: 0.5rem;">
+                    Enable Keystroke Sound
+                </label>
+            </div>
+
+            <div class="timer-big" id="stop-time">00:00:00.00</div>
+            <div class="timer-btns">
+                <button class="btn btn-ok" onclick="startStop()">Start</button>
+                <button class="btn btn-del" onclick="pauseStop()">Pause</button>
+                <button class="btn btn-sec" onclick="resetStop()">Reset</button>
+                <button class="btn" onclick="lapStop()">Lap Time</button>
+                <button class="btn btn-sec" onclick="exportLaps()">Export Laps</button>
+            </div>
+            <div id="lap-stats" style="margin-top: 1.5rem;"></div>
+            <div id="laps" style="margin-top: 1.5rem;"></div>
+        </section>
+
+        <section id="time" class="section">
+            <h2>Multi-Timer</h2>
+            
+            <div class="group">
+                <label>Select Alarm Sound:</label>
+                <select id="ringtone-select" onchange="changeRingtone()">
+                    <option value="bell" selected>Pleasant Bell</option>
+                    <option value="chime">Gentle Chime</option>
+                    <option value="beep">Classic Beep</option>
+                    <option value="melody">Soft Melody</option>
+                </select>
+                <button class="btn btn-sec" onclick="testRingtone()" style="margin-top: 0.5rem;">Test Sound</button>
+            </div>
+
+            <div class="group">
+                <label>Quick Presets:</label>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <button class="btn btn-sec" onclick="setPreset(5,0,0)">5 min</button>
+                    <button class="btn btn-sec" onclick="setPreset(10,0,0)">10 min</button>
+                    <button class="btn btn-sec" onclick="setPreset(15,0,0)">15 min</button>
+                    <button class="btn btn-sec" onclick="setPreset(25,0,0)">25 min (Pomodoro)</button>
+                    <button class="btn btn-sec" onclick="setPreset(30,0,0)">30 min</button>
+                    <button class="btn btn-sec" onclick="setPreset(0,0,60)">1 hour</button>
+                </div>
+            </div>
+
+            <div class="group">
+                <label>Set Custom Duration:</label>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <input type="number" id="t-h" placeholder="Hours" min="0" max="23" style="width: 110px;">
+                    <input type="number" id="t-m" placeholder="Minutes" min="0" max="59" style="width: 110px;">
+                    <input type="number" id="t-s" placeholder="Seconds" min="0" max="59" style="width: 110px;">
+                </div>
+            </div>
+
+            <div class="group">
+                <label>Timer Name (optional):</label>
+                <input type="text" id="timer-name" placeholder="e.g., Workout, Cooking, Study">
+            </div>
+
+            <div class="timer-big" id="time-left">00:00:00</div>
+            <div class="timer-btns">
+                <button class="btn btn-ok" onclick="startTime()">Start</button>
+                <button class="btn btn-del" onclick="pauseTime()">Pause</button>
+                <button class="btn btn-sec" onclick="resetTime()">Reset</button>
+                <button class="btn" onclick="addToTimerList()">Add to List</button>
+            </div>
+
+            <div id="timer-list" style="margin-top: 2rem;"></div>
+        </section>
+    </div>
+
+    <footer>
+        <h3>Supra Supernus</h3>
+        <p>Advanced productivity tools with powerful features.</p>
+        <p>&copy; 2025 Supra Supernus. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        let currentPriority = 'medium';
+        let currentQRType = 'text';
+        let qrObj = null;
+        let keystrokeSoundEnabled = true;
+        let selectedRingtone = 'bell';
+
+        // Audio Context for sounds
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        let alarmInterval = null;
+        let isAlarmPlaying = false;
+
+        // Keystroke sound
+        function playKeystroke() {
+            if (!keystrokeSoundEnabled) return;
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.05);
+        }
+
+        // Timer alarm sounds (single play)
+        function playAlarmOnce(type) {
+            if (type === 'bell') {
+                // Pleasant bell sound
+                for (let i = 0; i < 3; i++) {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    
+                    osc.frequency.value = 800 - (i * 100);
+                    osc.type = 'sine';
+                    gain.gain.setValueAtTime(0.4, audioContext.currentTime + (i * 0.3));
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + (i * 0.3) + 0.6);
+                    
+                    osc.start(audioContext.currentTime + (i * 0.3));
+                    osc.stop(audioContext.currentTime + (i * 0.3) + 0.6);
+                }
+            } else if (type === 'chime') {
+                // Gentle chime
+                const frequencies = [523.25, 659.25, 783.99];
+                frequencies.forEach((freq, i) => {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    
+                    osc.frequency.value = freq;
+                    osc.type = 'sine';
+                    gain.gain.setValueAtTime(0.3, audioContext.currentTime + (i * 0.2));
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + (i * 0.2) + 0.8);
+                    
+                    osc.start(audioContext.currentTime + (i * 0.2));
+                    osc.stop(audioContext.currentTime + (i * 0.2) + 0.8);
+                });
+            } else if (type === 'beep') {
+                // Simple beep
+                for (let i = 0; i < 5; i++) {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    
+                    osc.frequency.value = 1000;
+                    osc.type = 'square';
+                    gain.gain.setValueAtTime(0.3, audioContext.currentTime + (i * 0.4));
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + (i * 0.4) + 0.15);
+                    
+                    osc.start(audioContext.currentTime + (i * 0.4));
+                    osc.stop(audioContext.currentTime + (i * 0.4) + 0.15);
+                }
+            } else if (type === 'melody') {
+                // Pleasant melody
+                const melody = [523.25, 587.33, 659.25, 783.99];
+                melody.forEach((freq, i) => {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+                    
+                    osc.frequency.value = freq;
+                    osc.type = 'sine';
+                    gain.gain.setValueAtTime(0.35, audioContext.currentTime + (i * 0.25));
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + (i * 0.25) + 0.4);
+                    
+                    osc.start(audioContext.currentTime + (i * 0.25));
+                    osc.stop(audioContext.currentTime + (i * 0.25) + 0.4);
+                });
+            }
+        }
+
+        // Start continuous alarm
+        function startAlarm(type) {
+            if (isAlarmPlaying) return;
+            isAlarmPlaying = true;
+            
+            // Play immediately
+            playAlarmOnce(type);
+            
+            // Set interval to repeat
+            const intervals = {
+                'bell': 2000,
+                'chime': 2000,
+                'beep': 2500,
+                'melody': 2000
+            };
+            
+            alarmInterval = setInterval(() => {
+                playAlarmOnce(type);
+            }, intervals[type] || 2000);
+        }
+
+        // Stop alarm
+        function stopAlarm() {
+            isAlarmPlaying = false;
+            if (alarmInterval) {
+                clearInterval(alarmInterval);
+                alarmInterval = null;
+            }
+        }
+
+        // Test ringtone (single play)
+        function testRingtone() {
+            playAlarmOnce(selectedRingtone);
+        }
+
+        // Add keystroke listeners to all inputs
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => {
+                el.addEventListener('keydown', playKeystroke);
+            });
+        });
+
+        function showPage(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function countText() {
+            const t = document.getElementById('txt').value;
+            const w = t.trim().split(/\s+/).filter(x => x.length > 0);
+            const sentences = t.split(/[.!?]+/).filter(x => x.trim().length > 0);
+            const paragraphs = t.split(/\n\n+/).filter(x => x.trim().length > 0);
+            
+            document.getElementById('words').textContent = w.length;
+            document.getElementById('chars').textContent = t.length;
+            document.getElementById('no-space').textContent = t.replace(/\s/g, '').length;
+            document.getElementById('lines').textContent = t.split('\n').length;
+            document.getElementById('sentences').textContent = sentences.length;
+            document.getElementById('paragraphs').textContent = paragraphs.length;
+            document.getElementById('read-time').textContent = Math.ceil(w.length / 200);
+            document.getElementById('speak-time').textContent = Math.ceil(w.length / 150);
+        }
+
+        function changeCase(type) {
+            const el = document.getElementById('txt');
+            let t = el.value;
+            if (type === 'upper') t = t.toUpperCase();
+            else if (type === 'lower') t = t.toLowerCase();
+            else if (type === 'title') t = t.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+            else if (type === 'sentence') t = t.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+            else if (type === 'camel') t = t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, c) => c.toUpperCase());
+            else if (type === 'snake') t = t.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '_');
+            el.value = t;
+            countText();
+        }
+
+        function removeDup() {
+            const el = document.getElementById('txt');
+            const lines = el.value.split('\n');
+            el.value = [...new Set(lines)].join('\n');
+            countText();
+        }
+
+        function reverseText() {
+            const el = document.getElementById('txt');
+            el.value = el.value.split('').reverse().join('');
+            countText();
+        }
+
+        function sortLines() {
+            const el = document.getElementById('txt');
+            const lines = el.value.split('\n').sort();
+            el.value = lines.join('\n');
+            countText();
+        }
+
+        function removeSpaces() {
+            const el = document.getElementById('txt');
+            el.value = el.value.replace(/\s+/g, ' ').trim();
+            countText();
+        }
+
+        function clearTxt() {
+            document.getElementById('txt').value = '';
+            countText();
+        }
+
+        function showConvTab(tab) {
+            document.querySelectorAll('.conv-tab').forEach(t => t.style.display = 'none');
+            document.querySelectorAll('.tab-selector button').forEach(b => b.classList.remove('active'));
+            document.getElementById(tab + '-conv').style.display = 'block';
+            event.target.classList.add('active');
+        }
+
+        function convTemp(from) {
+            const cel = parseFloat(document.getElementById('cel').value) || 0;
+            const fah = parseFloat(document.getElementById('fah').value) || 0;
+            const kel = parseFloat(document.getElementById('kel').value) || 0;
+
+            if (from === 'c') {
+                document.getElementById('fah').value = ((cel * 9/5) + 32).toFixed(2);
+                document.getElementById('kel').value = (cel + 273.15).toFixed(2);
+            } else if (from === 'f') {
+                const c = (fah - 32) * 5/9;
+                document.getElementById('cel').value = c.toFixed(2);
+                document.getElementById('kel').value = (c + 273.15).toFixed(2);
+            } else if (from === 'k') {
+                const c = kel - 273.15;
+                document.getElementById('cel').value = c.toFixed(2);
+                document.getElementById('fah').value = ((c * 9/5) + 32).toFixed(2);
+            }
+        }
+
+        function convWeight() {
+            const kg = parseFloat(document.getElementById('kg').value) || 0;
+            const lbs = parseFloat(document.getElementById('lbs').value) || 0;
+            const gram = parseFloat(document.getElementById('gram').value) || 0;
+            const oz = parseFloat(document.getElementById('oz').value) || 0;
+
+            let kgVal = 0;
+            if (event.target.id === 'kg') kgVal = kg;
+            else if (event.target.id === 'lbs') kgVal = lbs / 2.20462;
+            else if (event.target.id === 'gram') kgVal = gram / 1000;
+            else if (event.target.id === 'oz') kgVal = oz / 35.274;
+
+            document.getElementById('kg').value = kgVal.toFixed(4);
+            document.getElementById('lbs').value = (kgVal * 2.20462).toFixed(4);
+            document.getElementById('gram').value = (kgVal * 1000).toFixed(2);
+            document.getElementById('oz').value = (kgVal * 35.274).toFixed(4);
+        }
+
+        function convLength() {
+            const meter = parseFloat(document.getElementById('meter').value) || 0;
+            const km = parseFloat(document.getElementById('km').value) || 0;
+            const feet = parseFloat(document.getElementById('feet').value) || 0;
+            const miles = parseFloat(document.getElementById('miles').value) || 0;
+            const inches = parseFloat(document.getElementById('inches').value) || 0;
+
+            let mVal = 0;
+            if (event.target.id === 'meter') mVal = meter;
+            else if (event.target.id === 'km') mVal = km * 1000;
+            else if (event.target.id === 'feet') mVal = feet / 3.28084;
+            else if (event.target.id === 'miles') mVal = miles * 1609.34;
+            else if (event.target.id === 'inches') mVal = inches / 39.3701;
+
+            document.getElementById('meter').value = mVal.toFixed(4);
+            document.getElementById('km').value = (mVal / 1000).toFixed(6);
+            document.getElementById('feet').value = (mVal * 3.28084).toFixed(4);
+            document.getElementById('miles').value = (mVal / 1609.34).toFixed(6);
+            document.getElementById('inches').value = (mVal * 39.3701).toFixed(4);
+        }
+
+        function convArea() {
+            const sqm = parseFloat(document.getElementById('sqm').value) || 0;
+            const sqft = parseFloat(document.getElementById('sqft').value) || 0;
+            const acre = parseFloat(document.getElementById('acre').value) || 0;
+            const hectare = parseFloat(document.getElementById('hectare').value) || 0;
+
+            let sqmVal = 0;
+            if (event.target.id === 'sqm') sqmVal = sqm;
+            else if (event.target.id === 'sqft') sqmVal = sqft / 10.7639;
+            else if (event.target.id === 'acre') sqmVal = acre * 4046.86;
+            else if (event.target.id === 'hectare') sqmVal = hectare * 10000;
+
+            document.getElementById('sqm').value = sqmVal.toFixed(4);
+            document.getElementById('sqft').value = (sqmVal * 10.7639).toFixed(4);
+            document.getElementById('acre').value = (sqmVal / 4046.86).toFixed(6);
+            document.getElementById('hectare').value = (sqmVal / 10000).toFixed(6);
+        }
+
+        function convVolume() {
+            const liter = parseFloat(document.getElementById('liter').value) || 0;
+            const ml = parseFloat(document.getElementById('ml').value) || 0;
+            const gallon = parseFloat(document.getElementById('gallon').value) || 0;
+            const cubicm = parseFloat(document.getElementById('cubicm').value) || 0;
+
+            let literVal = 0;
+            if (event.target.id === 'liter') literVal = liter;
+            else if (event.target.id === 'ml') literVal = ml / 1000;
+            else if (event.target.id === 'gallon') literVal = gallon * 3.78541;
+            else if (event.target.id === 'cubicm') literVal = cubicm * 1000;
+
+            document.getElementById('liter').value = literVal.toFixed(4);
+            document.getElementById('ml').value = (literVal * 1000).toFixed(2);
+            document.getElementById('gallon').value = (literVal / 3.78541).toFixed(4);
+            document.getElementById('cubicm').value = (literVal / 1000).toFixed(6);
+        }
+
+        function convSpeed() {
+            const kmh = parseFloat(document.getElementById('kmh').value) || 0;
+            const mph = parseFloat(document.getElementById('mph').value) || 0;
+            const ms = parseFloat(document.getElementById('ms').value) || 0;
+            const knots = parseFloat(document.getElementById('knots').value) || 0;
+
+            let kmhVal = 0;
+            if (event.target.id === 'kmh') kmhVal = kmh;
+            else if (event.target.id === 'mph') kmhVal = mph * 1.60934;
+            else if (event.target.id === 'ms') kmhVal = ms * 3.6;
+            else if (event.target.id === 'knots') kmhVal = knots * 1.852;
+
+            document.getElementById('kmh').value = kmhVal.toFixed(4);
+            document.getElementById('mph').value = (kmhVal / 1.60934).toFixed(4);
+            document.getElementById('ms').value = (kmhVal / 3.6).toFixed(4);
+            document.getElementById('knots').value = (kmhVal / 1.852).toFixed(4);
+        }
+
+        function calcPer() {
+            const p = parseFloat(document.getElementById('per').value) || 0;
+            const o = parseFloat(document.getElementById('of').value) || 0;
+            document.getElementById('per-res').textContent = '= ' + ((p / 100) * o).toFixed(2);
+        }
+
+        function calcPerOf() {
+            const n1 = parseFloat(document.getElementById('num1').value) || 0;
+            const n2 = parseFloat(document.getElementById('num2').value) || 0;
+            if (n2 !== 0) {
+                document.getElementById('per-of-res').textContent = '= ' + ((n1 / n2) * 100).toFixed(2) + '%';
+            }
+        }
+
+        function calcPerChange() {
+            const oldVal = parseFloat(document.getElementById('old-val').value) || 0;
+            const newVal = parseFloat(document.getElementById('new-val').value) || 0;
+            if (oldVal !== 0) {
+                const change = ((newVal - oldVal) / oldVal) * 100;
+                document.getElementById('per-change-res').textContent = '= ' + change.toFixed(2) + '%';
+            }
+        }
+
+        function updateLen(v) {
+            document.getElementById('len-val').textContent = v;
+        }
+
+        function genPass() {
+            const len = parseInt(document.getElementById('len').value);
+            const up = document.getElementById('up').checked;
+            const low = document.getElementById('low').checked;
+            const num = document.getElementById('num').checked;
+            const sym = document.getElementById('sym').checked;
+            const noAmb = document.getElementById('no-ambiguous').checked;
+
+            let chars = '';
+            if (up) chars += noAmb ? 'ABCDEFGHJKLMNPQRSTUVWXYZ' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (low) chars += noAmb ? 'abcdefghijkmnopqrstuvwxyz' : 'abcdefghijklmnopqrstuvwxyz';
+            if (num) chars += noAmb ? '23456789' : '0123456789';
+            if (sym) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            if (!chars) {
+                alert('Select at least one option');
+                return;
+            }
+
+            let pass = '';
+            for (let i = 0; i < len; i++) {
+                pass += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('gen-pass').value = pass;
+            checkPassStrength(pass);
+        }
+
+        function checkPassStrength(pass) {
+            let strength = 0;
+            let label = '';
+            let color = '';
+
+            if (pass.length >= 8) strength += 1;
+            if (pass.length >= 12) strength += 1;
+            if (pass.length >= 16) strength += 1;
+            if (/[a-z]/.test(pass)) strength += 1;
+            if (/[A-Z]/.test(pass)) strength += 1;
+            if (/[0-9]/.test(pass)) strength += 1;
+            if (/[^a-zA-Z0-9]/.test(pass)) strength += 1;
+
+            if (strength <= 2) {
+                label = 'Weak';
+                color = '#e74c3c';
+            } else if (strength <= 4) {
+                label = 'Medium';
+                color = '#f39c12';
+            } else if (strength <= 6) {
+                label = 'Strong';
+                color = '#27ae60';
+            } else {
+                label = 'Very Strong';
+                color = '#27ae60';
+            }
+
+            document.getElementById('strength').textContent = label;
+            document.getElementById('strength').style.color = color;
+            document.getElementById('strength-bar').style.width = (strength / 7 * 100) + '%';
+            document.getElementById('strength-bar').style.background = color;
+        }
+
+        function copyPass() {
+            const el = document.getElementById('gen-pass');
+            if (el.value) {
+                el.select();
+                document.execCommand('copy');
+                alert('Password copied!');
+            } else {
+                alert('Generate a password first');
+            }
+        }
+
+        function genMultiPass() {
+            let passwords = '';
+            for (let i = 0; i < 10; i++) {
+                genPass();
+                passwords += document.getElementById('gen-pass').value + '\n';
+            }
+            document.getElementById('multi-pass').textContent = passwords;
+        }
+
+        function setQRType(type) {
+            currentQRType = type;
+            document.querySelectorAll('.qr-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.qr-btn').classList.add('active');
+
+            document.querySelectorAll('[id$="-form"]').forEach(f => f.style.display = 'none');
+            document.getElementById('qr-' + type + '-form').style.display = 'block';
+        }
+
+        function makeQR() {
+            let qrData = '';
+
+            if (currentQRType === 'text') {
+                qrData = document.getElementById('qr-txt').value.trim();
+            } else if (currentQRType === 'wifi') {
+                const ssid = document.getElementById('wifi-ssid').value;
+                const pass = document.getElementById('wifi-pass').value;
+                const type = document.getElementById('wifi-type').value;
+                qrData = `WIFI:T:${type};S:${ssid};P:${pass};;`;
+            } else if (currentQRType === 'email') {
+                const addr = document.getElementById('email-addr').value;
+                const subj = document.getElementById('email-subj').value;
+                const msg = document.getElementById('email-msg').value;
+                qrData = `mailto:${addr}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(msg)}`;
+            } else if (currentQRType === 'phone') {
+                qrData = 'tel:' + document.getElementById('phone-num').value;
+            } else if (currentQRType === 'sms') {
+                const num = document.getElementById('sms-num').value;
+                const msg = document.getElementById('sms-msg').value;
+                qrData = `sms:${num}?body=${encodeURIComponent(msg)}`;
+            } else if (currentQRType === 'vcard') {
+                const name = document.getElementById('vcard-name').value;
+                const org = document.getElementById('vcard-org').value;
+                const phone = document.getElementById('vcard-phone').value;
+                const email = document.getElementById('vcard-email').value;
+                const web = document.getElementById('vcard-web').value;
+                qrData = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nORG:${org}\nTEL:${phone}\nEMAIL:${email}\nURL:${web}\nEND:VCARD`;
+            }
+
+            if (!qrData) {
+                alert('Please fill in required fields');
+                return;
+            }
+
+            const size = parseInt(document.getElementById('qr-size').value);
+            const box = document.getElementById('qr-box');
+            box.innerHTML = '';
+            
+            qrObj = new QRCode(box, {
+                text: qrData,
+                width: size,
+                height: size,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qr-box canvas');
+            if (!canvas) {
+                alert('Generate a QR code first');
+                return;
+            }
+            const url = canvas.toDataURL('image/png');
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'qrcode.png';
+            a.click();
+        }
+
+        let todos = [];
+
+        function loadTodos() {
+            const data = localStorage.getItem('todos');
+            if (data) todos = JSON.parse(data);
+            showTodos();
+        }
+
+        function saveTodos() {
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+
+        function setPriority(p) {
+            currentPriority = p;
+            document.querySelectorAll('.priority-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function addTask() {
+            const el = document.getElementById('task-in');
+            const txt = el.value.trim();
+            if (!txt) {
+                alert('Enter a task');
+                return;
+            }
+
+            const cat = document.getElementById('task-cat').value;
+            const date = document.getElementById('task-date').value;
+
+            todos.push({
+                id: Date.now(),
+                text: txt,
+                done: false,
+                priority: currentPriority,
+                category: cat,
+                date: date,
+                created: new Date().toLocaleString()
+            });
+
+            el.value = '';
+            document.getElementById('task-date').value = '';
+            saveTodos();
+            showTodos();
+            updateTaskStats();
+        }
+
+        function toggleTask(id) {
+            const t = todos.find(x => x.id === id);
+            if (t) t.done = !t.done;
+            saveTodos();
+            showTodos();
+            updateTaskStats();
+        }
+
+        function delTask(id) {
+            todos = todos.filter(x => x.id !== id);
+            saveTodos();
+            showTodos();
+            updateTaskStats();
+        }
+
+        function clearDone() {
+            todos = todos.filter(x => !x.done);
+            saveTodos();
+            showTodos();
+            updateTaskStats();
+        }
+
+        function sortTasks(by) {
+            if (by === 'priority') {
+                const order = { high: 1, medium: 2, low: 3 };
+                todos.sort((a, b) => order[a.priority] - order[b.priority]);
+            } else if (by === 'date') {
+                todos.sort((a, b) => new Date(a.date || '9999') - new Date(b.date || '9999'));
+            }
+            saveTodos();
+            showTodos();
+        }
+
+        function filterTasks() {
+            showTodos();
+        }
+
+        function showTodos() {
+            const filter = document.getElementById('filter-cat').value;
+            const filtered = filter === 'all' ? todos : todos.filter(t => t.category === filter);
+
+            const box = document.getElementById('tasks');
+            if (!filtered.length) {
+                box.innerHTML = '<p style="text-align: center; color: #95a5a6; padding: 2rem;">No tasks</p>';
+                return;
+            }
+
+            const priorityColors = { high: '#e74c3c', medium: '#f39c12', low: '#3498db' };
+
+            box.innerHTML = filtered.map(t => `
+                <div class="item todo ${t.done ? 'done' : ''}" style="border-left-color: ${priorityColors[t.priority]};">
+                    <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTask(${t.id})">
+                    <div style="flex: 1;">
+                        <span style="font-weight: 600;">${t.text}</span>
+                        <div style="font-size: 0.85rem; color: #7f8c8d; margin-top: 0.3rem;">
+                            <span style="background: ${priorityColors[t.priority]}; color: white; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.75rem;">${t.priority.toUpperCase()}</span>
+                            <span style="margin-left: 0.5rem;">${t.category}</span>
+                            ${t.date ? '<span style="margin-left: 0.5rem;">📅 ' + t.date + '</span>' : ''}
+                        </div>
+                    </div>
+                    <button class="btn btn-del" style="padding: 0.4rem 0.9rem;" onclick="delTask(${t.id})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function updateTaskStats() {
+            const total = todos.length;
+            const done = todos.filter(t => t.done).length;
+            const pending = total - done;
+            
+            document.getElementById('task-stats').innerHTML = `
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-val">${total}</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val">${done}</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val">${pending}</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        let notes = [];
+
+        function loadNotes() {
+            const data = localStorage.getItem('notes');
+            if (data) notes = JSON.parse(data);
+            showNotes();
+        }
+
+        function addNote() {
+            const title = document.getElementById('note-title').value.trim();
+            const txt = document.getElementById('note-txt').value.trim();
+            const cat = document.getElementById('note-cat').value;
+            const tags = document.getElementById('note-tags').value.split(',').map(t => t.trim()).filter(t => t);
+
+            if (!title || !txt) {
+                alert('Fill title and content');
+                return;
+            }
+
+            notes.unshift({
+                id: Date.now(),
+                title: title,
+                text: txt,
+                category: cat,
+                tags: tags,
+                date: new Date().toLocaleString()
+            });
+
+            document.getElementById('note-title').value = '';
+            document.getElementById('note-txt').value = '';
+            document.getElementById('note-tags').value = '';
+
+            localStorage.setItem('notes', JSON.stringify(notes));
+            showNotes();
+        }
+
+        function delNote(id) {
+            notes = notes.filter(n => n.id !== id);
+            localStorage.setItem('notes', JSON.stringify(notes));
+            showNotes();
+        }
+
+        function searchNotes() {
+            showNotes();
+        }
+
+        function filterNotes() {
+            showNotes();
+        }
+
+        function showNotes() {
+            const search = document.getElementById('search-notes').value.toLowerCase();
+            const filter = document.getElementById('filter-notes-cat').value;
+
+            let filtered = notes;
+            if (search) {
+                filtered = filtered.filter(n => 
+                    n.title.toLowerCase().includes(search) || 
+                    n.text.toLowerCase().includes(search) ||
+                    n.tags.some(t => t.toLowerCase().includes(search))
+                );
+            }
+            if (filter !== 'all') {
+                filtered = filtered.filter(n => n.category === filter);
+            }
+
+            const box = document.getElementById('all-notes');
+            if (!filtered.length) {
+                box.innerHTML = '<p style="text-align: center; color: #95a5a6; padding: 2rem;">No notes found</p>';
+                return;
+            }
+
+            box.innerHTML = filtered.map(n => `
+                <div class="item">
+                    <h4>${n.title}</h4>
+                    <p>${n.text}</p>
+                    <div class="category-tags">
+                        <span style="background: #95a5a6; color: white; padding: 0.2rem 0.6rem; border-radius: 3px; font-size: 0.8rem;">${n.category}</span>
+                        ${n.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                    </div>
+                    <small style="color: #95a5a6; display: block; margin-top: 0.8rem;">${n.date}</small>
+                    <button class="btn btn-del" onclick="delNote(${n.id})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function exportNotes() {
+            if (!notes.length) {
+                alert('No notes to export');
+                return;
+            }
+
+            let content = 'NOTES EXPORT\n' + '='.repeat(50) + '\n\n';
+            notes.forEach(n => {
+                content += `Title: ${n.title}\n`;
+                content += `Category: ${n.category}\n`;
+                content += `Tags: ${n.tags.join(', ')}\n`;
+                content += `Date: ${n.date}\n`;
+                content += `Content:\n${n.text}\n`;
+                content += '\n' + '-'.repeat(50) + '\n\n';
+            });
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'notes_export.txt';
+            a.click();
+        }
+
+        let stopInt = null;
+        let stopTime = 0;
+        let stopRun = false;
+        let laps = [];
+
+        function startStop() {
+            if (stopRun) return;
+            stopRun = true;
+            const start = Date.now() - stopTime;
+            stopInt = setInterval(() => {
+                stopTime = Date.now() - start;
+                showStopTime();
+            }, 10);
+        }
+
+        function pauseStop() {
+            stopRun = false;
+            clearInterval(stopInt);
+        }
+
+        function resetStop() {
+            pauseStop();
+            stopTime = 0;
+            laps = [];
+            showStopTime();
+            document.getElementById('laps').innerHTML = '';
+            document.getElementById('lap-stats').innerHTML = '';
+        }
+
+        function lapStop() {
+            if (!stopRun) return;
+            laps.push(stopTime);
+            showLaps();
+            updateLapStats();
+        }
+
+        function showStopTime() {
+            const t = stopTime;
+            const h = Math.floor(t / 3600000);
+            const m = Math.floor((t % 3600000) / 60000);
+            const s = Math.floor((t % 60000) / 1000);
+            const ms = Math.floor((t % 1000) / 10);
+            document.getElementById('stop-time').textContent = 
+                `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}`;
+        }
+
+        function showLaps() {
+            const box = document.getElementById('laps');
+            box.innerHTML = '<h3>Lap Times:</h3>' + laps.map((lap, i) => {
+                const h = Math.floor(lap / 3600000);
+                const m = Math.floor((lap % 3600000) / 60000);
+                const s = Math.floor((lap % 60000) / 1000);
+                const ms = Math.floor((lap % 1000) / 10);
+                return `<div class="stat" style="text-align: left; background: #f8f9fa; color: #2c3e50;">
+                    <strong>Lap ${i + 1}:</strong> ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}
+                </div>`;
+            }).join('');
+        }
+
+        function updateLapStats() {
+            if (laps.length < 2) return;
+            
+            const fastest = Math.min(...laps);
+            const slowest = Math.max(...laps);
+            const avg = laps.reduce((a, b) => a + b, 0) / laps.length;
+
+            const formatTime = (t) => {
+                const h = Math.floor(t / 3600000);
+                const m = Math.floor((t % 3600000) / 60000);
+                const s = Math.floor((t % 60000) / 1000);
+                const ms = Math.floor((t % 1000) / 10);
+                return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}`;
+            };
+
+            document.getElementById('lap-stats').innerHTML = `
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-val" style="font-size: 1.2rem;">${formatTime(fastest)}</div>
+                        <div class="stat-label">Fastest Lap</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val" style="font-size: 1.2rem;">${formatTime(slowest)}</div>
+                        <div class="stat-label">Slowest Lap</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val" style="font-size: 1.2rem;">${formatTime(avg)}</div>
+                        <div class="stat-label">Average Lap</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function exportLaps() {
+            if (!laps.length) {
+                alert('No laps to export');
+                return;
+            }
+
+            let content = 'STOPWATCH LAP TIMES\n' + '='.repeat(50) + '\n\n';
+            laps.forEach((lap, i) => {
+                const h = Math.floor(lap / 3600000);
+                const m = Math.floor((lap % 3600000) / 60000);
+                const s = Math.floor((lap % 60000) / 1000);
+                const ms = Math.floor((lap % 1000) / 10);
+                content += `Lap ${i + 1}: ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(2, '0')}\n`;
+            });
+
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'stopwatch_laps.txt';
+            a.click();
+        }
+
+        let timeInt = null;
+        let timeLeft = 0;
+        let timeRun = false;
+        let timers = [];
+
+        function toggleKeystroke() {
+            keystrokeSoundEnabled = document.getElementById('keystroke-sound').checked;
+        }
+
+        function changeRingtone() {
+            selectedRingtone = document.getElementById('ringtone-select').value;
+        }
+
+        function testRingtone() {
+            testRingtone();
+        }
+
+        function setPreset(m, s, h) {
+            document.getElementById('t-h').value = h || '';
+            document.getElementById('t-m').value = m || '';
+            document.getElementById('t-s').value = s || '';
+        }
+
+        function startTime() {
+            if (timeRun) return;
+
+            // Stop any playing alarm
+            stopAlarm();
+
+            if (timeLeft === 0) {
+                const h = parseInt(document.getElementById('t-h').value) || 0;
+                const m = parseInt(document.getElementById('t-m').value) || 0;
+                const s = parseInt(document.getElementById('t-s').value) || 0;
+                timeLeft = (h * 3600 + m * 60 + s) * 1000;
+
+                if (timeLeft === 0) {
+                    alert('Set a duration');
+                    return;
+                }
+            }
+
+            timeRun = true;
+            const start = Date.now();
+            const end = start + timeLeft;
+
+            timeInt = setInterval(() => {
+                timeLeft = end - Date.now();
+                if (timeLeft <= 0) {
+                    timeLeft = 0;
+                    pauseTime();
+                    showTimeLeft();
+                    startAlarm(selectedRingtone);
+                    
+                    // Show custom alert with stop button
+                    showAlarmAlert();
+                    return;
+                }
+                showTimeLeft();
+            }, 100);
+        }
+
+        function showAlarmAlert() {
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.id = 'alarm-overlay';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+            `;
+
+            const alertBox = document.createElement('div');
+            alertBox.style.cssText = `
+                background: white;
+                padding: 3rem;
+                border-radius: 15px;
+                text-align: center;
+                box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+                max-width: 400px;
+                animation: shake 0.5s infinite;
+            `;
+
+            alertBox.innerHTML = `
+                <div style="font-size: 4rem; margin-bottom: 1rem;">⏰</div>
+                <h2 style="color: #2c3e50; margin-bottom: 1rem; font-size: 2rem;">Time's Up!</h2>
+                <p style="color: #7f8c8d; margin-bottom: 2rem; font-size: 1.1rem;">Your timer has finished</p>
+                <button id="stop-alarm-btn" style="
+                    padding: 1rem 3rem;
+                    background: #e74c3c;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    cursor: pointer;
+                    box-shadow: 0 4px 15px rgba(231,76,60,0.4);
+                ">STOP ALARM</button>
+            `;
+
+            // Add shake animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-10px); }
+                    75% { transform: translateX(10px); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            overlay.appendChild(alertBox);
+            document.body.appendChild(overlay);
+
+            document.getElementById('stop-alarm-btn').onclick = () => {
+                stopAlarm();
+                document.body.removeChild(overlay);
+                document.head.removeChild(style);
+            };
+        }
+
+        function pauseTime() {
+            timeRun = false;
+            clearInterval(timeInt);
+        }
+
+        function resetTime() {
+            pauseTime();
+            stopAlarm();
+            timeLeft = 0;
+            document.getElementById('t-h').value = '';
+            document.getElementById('t-m').value = '';
+            document.getElementById('t-s').value = '';
+            showTimeLeft();
+        }
+
+        function showTimeLeft() {
+            const t = Math.max(0, timeLeft);
+            const h = Math.floor(t / 3600000);
+            const m = Math.floor((t % 3600000) / 60000);
+            const s = Math.floor((t % 60000) / 1000);
+            document.getElementById('time-left').textContent = 
+                `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+
+        function addToTimerList() {
+            const h = parseInt(document.getElementById('t-h').value) || 0;
+            const m = parseInt(document.getElementById('t-m').value) || 0;
+            const s = parseInt(document.getElementById('t-s').value) || 0;
+            const name = document.getElementById('timer-name').value.trim() || 'Timer';
+
+            if (h === 0 && m === 0 && s === 0) {
+                alert('Set a duration');
+                return;
+            }
+
+            timers.push({ name, hours: h, minutes: m, seconds: s });
+            showTimerList();
+        }
+
+        function showTimerList() {
+            const box = document.getElementById('timer-list');
+            if (!timers.length) return;
+
+            box.innerHTML = '<h3>Saved Timers:</h3>' + timers.map((t, i) => `
+                <div class="item">
+                    <h4>${t.name}</h4>
+                    <p>${t.hours}h ${t.minutes}m ${t.seconds}s</p>
+                    <button class="btn" style="position: absolute; right: 80px; top: 1rem; padding: 0.4rem 0.9rem;" onclick="loadTimer(${i})">Load</button>
+                    <button class="btn btn-del" onclick="deleteTimer(${i})">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function loadTimer(idx) {
+            const t = timers[idx];
+            document.getElementById('t-h').value = t.hours;
+            document.getElementById('t-m').value = t.minutes;
+            document.getElementById('t-s').value = t.seconds;
+            document.getElementById('timer-name').value = t.name;
+        }
+
+        function deleteTimer(idx) {
+            timers.splice(idx, 1);
+            showTimerList();
+        }
+
+        window.addEventListener('load', () => {
+            loadTodos();
+            loadNotes();
+            showStopTime();
+            showTimeLeft();
+            updateTaskStats();
+            
+            // Add keystroke sound to dynamically created inputs
+            const observer = new MutationObserver(() => {
+                document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(el => {
+                    if (!el.dataset.soundAdded) {
+                        el.addEventListener('keydown', playKeystroke);
+                        el.dataset.soundAdded = 'true';
+                    }
+                });
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
+</body>
+</html>
